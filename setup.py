@@ -20,12 +20,12 @@ setup(name='dyn53',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
       zip_safe=False,
-      install_requires=[ 'boto', 'dnspython', 'requests', 'certifi', ],
+      install_requires=[ 'boto3', 'dnspython', 'requests', 'certifi', ],
       extras_require={
           'test': ['pytest'],
       },
       entry_points="""
       [console_scripts]
-      dyn53=dyn53.scripts.cli:dyn53
+      dyn53=dyn53.dyn53:run
       """
       )
