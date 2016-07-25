@@ -50,12 +50,16 @@ def get_public_ip():
 
 
 def check(subdomain, domain, addr):
+    """ Bypass what our dns says and ask directly to the authority.
 
+    zresolver is passed by kwarg to allow overriding in the tests.
+    """
     zresolver = resolver.Resolver()
-    # bypass what our dns says and ask directly to the authority.
     try:
         for each in resolver.query(domain, 'NS'):
+
             ns_srv = resolver.query(each.to_text())[0].to_text()
+            zresolver.nameservers.clear()
             zresolver.nameservers.append(ns_srv)
         res = zresolver.query("%s.%s" % (subdomain, domain), 'A')[0].to_text()
         return res == addr
@@ -87,6 +91,10 @@ def update(address, subdomain, domain, ttl, conf, debug=False,):
     upsert(fqdn, address, ttl, conf)
 
 
+def stub(client):
+    pass
+
+
 def upsert(fqdn, address, ttl, conf):
 
     change_batch = {
@@ -111,6 +119,7 @@ def upsert(fqdn, address, ttl, conf):
     logger.debug(repr(change_batch))
     client = boto3.client('route53', aws_access_key_id=conf.aws_key,
                           aws_secret_access_key=conf.aws_sec_key)
+    stub(client)
 
     response = client.change_resource_record_sets(
         HostedZoneId=conf.hosted_zone_id, ChangeBatch=change_batch)
@@ -120,9 +129,8 @@ def upsert(fqdn, address, ttl, conf):
         'HTTPStatusCode'])
 
 
-def run():
+def run(cf=Conf()):
     try:
-        cf = Conf()
         args = cli(cf)
         update(args.address, subdomain=args.subdomain, domain=args.domain,
                ttl=args.ttl, conf=cf, debug=args.debug)

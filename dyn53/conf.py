@@ -15,6 +15,7 @@ DEFAULTS = {'domain': 'domain.tld.',
             'hosted_zone_id': "My hosted Zone Id",
             'aws_key': "MY KEY",
             'aws_sec_key': "MY SECRET KEY"}
+
 CONF_FILE = "~/.config/dyn53.conf"
 
 
@@ -29,6 +30,7 @@ class Conf:
     def __init__(self, defaults=DEFAULTS, conf_file=CONF_FILE):
         conf_file = os.path.expanduser(conf_file)
         self.log = logging.getLogger('dyn53')
+        self.log.debug("Using conf_file = %s", conf_file)
         self.conf = configparser.ConfigParser()
         self.conf['dyn53'] = defaults
         if os.path.exists(conf_file):
@@ -43,6 +45,7 @@ class Conf:
             sample_file = "%s.sample" % conf_file
             self.log.info("Creating sample config file: %s", sample_file)
             with open(sample_file, 'w') as fp:
+                self.log.debug("Creating %s", sample_file)
                 self.conf.write(fp)
             os.chmod(sample_file, 0o600)
             raise SystemExit("No config file found, exiting.")
