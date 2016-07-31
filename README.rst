@@ -1,18 +1,18 @@
-dyn53
+Dyn53
 =====
 
 A tool for updating route53 addresses, simulating a dynamic DNS service by
-asking `ipify.org<http://ipify.org>`_ and using boto3, it is meant to run
+asking `ipify.org <http://ipify.org>`_ and using boto3, it is meant to run
 via crontab on python3 enabled devices. It uses, dnspython, certifi, requests,
- and boto3.
+and boto3.
 
 Install
 -------
-.. code-block:: shell
 
-    pip install dyn53
+    ``pip install dyn53``
 
 Alternatively, download the package, decompress and run:
+
  ``python setup.py install``
 
 
@@ -22,7 +22,8 @@ Usage
 Configure dyn53 by editing ~/.config/dyn53.conf, if the file is not present,
 a sample one will be created. Boto3 config is not required, nor used.
 
-.. code-block:: shell
+.. code-block:: bash
+
     > dyn53
     2016-07-25 14:22:58,212 - dyn53 - INFO - Creating sample config file: /home/user/.config/dyn53.conf.sample
     No config file found, exiting.
@@ -50,7 +51,3 @@ Notes
   be checked via https to resolve the current public IP address.
 * dyn53 is lazy, if the domain is already pointing to the resolved or given
   address, it wont update the record.
-
-
-
-
