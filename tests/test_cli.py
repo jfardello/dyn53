@@ -4,6 +4,7 @@ from unittest.mock import patch
 from dyn53 import conf
 import sys
 
+
 TEST_CONFIG = "/tmp/dyn53_test_%s" % os.getpid()
 
 

@@ -2,14 +2,14 @@ import os
 import sys
 import unittest
 import platform
-from unittest.mock import patch, Mock, MagicMock
-from dyn53 import dyn53
-from dyn53.conf import Conf
-import certifi
 from datetime import datetime
+from unittest.mock import patch, Mock, MagicMock
 
+import certifi
 from botocore.stub import Stubber
 
+from dyn53 import dyn53
+from dyn53 import conf
 
 TEST_CONFIG = "/tmp/dyn53_test_%s" % os.getpid()
 
@@ -53,11 +53,6 @@ class TestClient(unittest.TestCase):
         if os.path.exists(TEST_CONFIG):
             os.remove(TEST_CONFIG)
 
-    @classmethod
-    def tearDownClass(cls):
-        if os.path.exists(TEST_CONFIG):
-            os.remove(TEST_CONFIG)
-
     @patch('requests.get')
     def test_01_get_public_ip(self, mocked):
         address = dyn53.get_public_ip()
@@ -75,4 +70,4 @@ class TestClient(unittest.TestCase):
         mock_query.side_effect = [[mm1]]
         mock_get_public_ip.return_value = "2.2.2.2"
         with patch.object(sys, 'argv', ["dyn53", ]):
-            dyn53.run(Conf(conf_file=TEST_CONFIG))
+            dyn53.run(conf.Conf(conf_file=TEST_CONFIG))

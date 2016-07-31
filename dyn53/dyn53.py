@@ -129,7 +129,9 @@ def upsert(fqdn, address, ttl, conf):
         'HTTPStatusCode'])
 
 
-def run(cf=Conf()):
+def run(cf=None):
+    if cf is None:
+        cf = Conf()
     try:
         args = cli(cf)
         update(args.address, subdomain=args.subdomain, domain=args.domain,
