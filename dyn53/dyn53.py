@@ -1,5 +1,5 @@
 """
-Simple tool for updating amazon route53 DNS entres "ala dyndns".
+Simple tool for updating amazon route53 DNS entries "ala dyndns".
 It requires boto3, requests, dnspython, and certifi.
 
 
@@ -7,7 +7,7 @@ Usage
 -----
     dyn53 [-h] [-a ADDRESS] [-d DOMAIN] [-s SUBDOMAIN] [-t TTL]
 
-    With no parameters the script will use the host's nodename and the
+    With no parameters the script will use the host's node-name and the
     configured domain and TTL in the [dyn53] section of ~/.config/dyn53.cfg
 
     [dyn53]
@@ -90,6 +90,8 @@ def update(address, subdomain, domain, ttl, conf, debug=False,):
     logger.debug('FQDN is: %s', fqdn)
     upsert(fqdn, address, ttl, conf)
 
+
+# noinspection PyUnusedLocal
 
 def stub(client):
     pass

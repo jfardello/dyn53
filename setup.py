@@ -1,3 +1,4 @@
+# -*- coding: iso-8859-15 -*-
 from codecs import open as codecs_open
 from setuptools import setup, find_packages
 
@@ -12,7 +13,7 @@ setup(name='dyn53',
       long_description=long_description,
       classifiers=[],
       keywords='',
-      author="JosÃ© Fardello",
+      author="José Fardello",
       author_email='jmfardello@gmail.com',
       url='https://github.com/jfardello/dyn53',
       license='MIT',

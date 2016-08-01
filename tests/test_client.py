@@ -11,6 +11,9 @@ from botocore.stub import Stubber
 from dyn53 import dyn53
 from dyn53 import conf
 
+# make pycharm happy.
+patch.object = patch.object
+
 TEST_CONFIG = "/tmp/dyn53_test_%s" % os.getpid()
 
 expected = {

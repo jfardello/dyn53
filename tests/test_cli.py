@@ -4,6 +4,8 @@ from unittest.mock import patch
 from dyn53 import conf
 import sys
 
+# make pycharm happy
+patch.object = patch.object
 
 TEST_CONFIG = "/tmp/dyn53_test_%s" % os.getpid()
 
@@ -28,20 +30,20 @@ class TestCli(unittest.TestCase):
                 conf.Conf(conf_file=TEST_CONFIG)
         self.assertTrue(os.path.exists("%s.sample" % TEST_CONFIG))
 
-    def test_03_read_conf(self):
+    def test_02_read_conf(self):
         move()
         with patch.object(sys, 'argv', ['dyn53', "-a", "200.1.1.1"]):
             cf = conf.Conf(conf_file=TEST_CONFIG)
         self.assertEqual(cf.ttl, 300)
         self.assertEqual(cf.debug, False)
 
-    def test_04_wrong_perm(self):
+    def test_03_wrong_perm(self):
         bad_perms()
         with patch.object(sys, 'argv', ['dyn53', "-a", "200.1.1.1"]):
             with self.assertRaises(conf.WrongPermissions):
                 conf.Conf(conf_file=TEST_CONFIG)
 
-    def test_05_args(self):
+    def test_04_args(self):
         fix_perms()
         args = "dyn53 -a 200.0.0.1 -d foo.tld -s box -t 300".split()
         with patch.object(sys, 'argv', args):
