@@ -6,10 +6,12 @@ asking `ipify.org <http://ipify.org>`_ and using boto3, it is meant to run
 via crontab on python3 enabled devices. It uses, dnspython, certifi, requests,
 and boto3.
 
+Dyn53 is tested against python versions 3.3, 3.4 and 3.5.
+
 Install
 -------
 
-    ``pip install dyn53``
+    ``pip3 install dyn53``
 
 Alternatively, download the package, decompress and run:
 
