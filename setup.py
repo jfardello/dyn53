@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-15 -*-
+# -*- coding: utf-8 -*-
 from codecs import open as codecs_open
 from setuptools import setup, find_packages
 
@@ -12,7 +12,7 @@ setup(name='dyn53',
       description="Update route 53 dns records based on current IP address.",
       long_description=long_description,
       keywords='',
-      author="José Fardello",
+      author="JosÃ© Fardello",
       author_email='jmfardello@gmail.com',
       url='https://github.com/jfardello/dyn53',
       license='MIT',
