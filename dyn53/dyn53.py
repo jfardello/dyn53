@@ -80,7 +80,7 @@ def update(address, subdomain, domain, ttl, conf, debug=False,):
 
     # Lazy check, don't connect to r53 if it isn't needed.
     if check(subdomain, domain, address):
-        logger.debug('FQDN is already pointing to %s', address)
+        logger.debug('FQDN is already pointing at %s', address)
         sys.exit(0)
 
     if subdomain is None:

@@ -44,7 +44,7 @@ a sample one will be created. Boto3 config is not required, nor used.
 
     > dyn53  -s myhost --debug
     2016-07-26 00:42:31,646 - dyn53 - DEBUG - Got ip: 52.37.72.89
-    2016-07-26 00:42:31,707 - dyn53 - DEBUG - FQDN is already pointing to 52.37.72.89
+    2016-07-26 00:42:31,707 - dyn53 - DEBUG - FQDN is already pointing at 52.37.72.89
 
 Notes
 -----
