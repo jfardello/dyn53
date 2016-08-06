@@ -9,6 +9,7 @@ with codecs_open('README.rst', encoding='utf-8') as f:
 
 setup(name='dyn53',
       version='0.0.1',
+      python_requires='>3.2',
       description="Update route 53 dns records based on current IP address.",
       long_description=long_description,
       keywords='',
